@@ -3,27 +3,27 @@ using System.IO;
 
 namespace win32editor
 {
-    internal class Helpers : EditorProcess
+    internal class Helpers
     {
 
         public static void LoadFile()
         {
 
-            if (!_saved)
+            if (!Editor._saved)
             {
                 MessageBox.ErrorQuery("Not Implemented", "Functionality not yet implemented.", "Ok");
             }
 
 
-            if (fileName != null)
+            if (Editor.fileName != null)
             {
                 string s = "";
-                byte[] buffer = File.ReadAllBytes(fileName);
+                byte[] buffer = File.ReadAllBytes(Editor.fileName);
 
                 // BUGBUG: #452 TextView.LoadFile keeps file open and provides no way of closing it 
                 //_textView.LoadFile(fileName);
 
-                for (int i = buffer.Length - 1; i >= 0; i--)
+                for (int i = 0; i < buffer.Length; i++)
                 {
                     s += (char)buffer[i];
                 }
@@ -37,9 +37,9 @@ namespace win32editor
                 string removeTabs = s.Replace("\t", "  ");
                 string removeNewLines = removeTabs.Replace("\r\n", "\n");
 
-                textField.Text = removeNewLines;
-                wind.Title = fileName;
-                _saved = true;
+                Editor.textField.Text = removeNewLines;
+                Editor.wind.Title = Editor.fileName;
+                Editor._saved = true;
             }
         }
 
@@ -51,19 +51,19 @@ namespace win32editor
 
             if (!d.Canceled)
             {
-                fileName = d.FilePaths[0];
+                Editor.fileName = d.FilePaths[0];
                 LoadFile();
             }
         }
 
         public static void Save()
         {
-            if (fileName != null)
+            if (Editor.fileName != null)
             {
                 // BUGBUG: #279 TextView does not know how to deal with \r\n, only \r 
                 // As a result files saved on Windows and then read back will show invalid chars.
-                File.WriteAllText(fileName, textField.Text.ToString());
-                _saved = true;
+                File.WriteAllText(Editor.fileName, Editor.textField.Text.ToString());
+                Editor._saved = true;
             }
         }
     }

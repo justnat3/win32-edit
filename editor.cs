@@ -4,7 +4,7 @@ using Terminal.Gui;
 
 namespace win32editor
 {
-    internal class EditorProcess
+    internal class Editor
     {
 
         public static string fileName { get; set; }
@@ -26,7 +26,7 @@ namespace win32editor
             CaptureArgs(args);
 
             //Create Mouse-Accessed menubar to save, open, load, files.
-            
+
             textField.ColorScheme = Colors.Dialog;
             menu.ColorScheme = Colors.Dialog;
             wind.Add(textField);
@@ -57,6 +57,6 @@ namespace win32editor
             var d = new Label(textField.CurrentRow.ToString()) { X = 0, Y = 0, Width = Dim.Percent(100), Height = Dim.Percent(10) };
             wind.Add(d);
         }
-        
+
     }
 }
