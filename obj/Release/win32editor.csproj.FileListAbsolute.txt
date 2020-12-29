@@ -1,0 +1,10 @@
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\bin\Release\win32editor.exe
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\bin\Release\win32editor.pdb
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\bin\Release\NStack.dll
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\bin\Release\Terminal.Gui.dll
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\bin\Release\Terminal.Gui.xml
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Release\win32editor.csprojAssemblyReference.cache
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Release\win32editor.csproj.CoreCompileInputs.cache
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Release\win32editor.csproj.CopyComplete
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Release\win32editor.exe
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Release\win32editor.pdb

@@ -1,0 +1,14 @@
+there are some issues.
+
+this is a file that I can edit text in.
+         this can be some weird behavior
+  ??? 222!!! some chars 
+std::cout << "some text";
+
+
+int
+main()
+{
+     puts("Hello world");
+     return 0;
+}
