@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="buffer.cs" />
     <Compile Include="editor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
