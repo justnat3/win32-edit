@@ -1,14 +1,15 @@
-﻿using System.IO;
+using System.IO;
 using Terminal.Gui;
-
 
 namespace win32editor
 {
     internal class Editor
     {
-
+        public static bool fileLoaded { get; set; } = false;
         public static string fileName { get; set; }
+       
         public static bool _saved { get; set; } = true;  // assume the file is saved and check back later to see if the file has been updated. 
+
         public static Window wind = new Window("Untitled") { X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill() };
         public static TextView textField = new TextView { X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill() };
         public static MenuBar menu = new MenuBar(new[] {
@@ -16,7 +17,7 @@ namespace win32editor
                     new MenuItem ("_Open", "", () => { Helpers.Open(); }, null, null, Key.O | Key.CtrlMask),
                     new MenuItem ("_Save", "", () => Helpers.Save(), null, null, Key.S | Key.CtrlMask),
                     null,
-                    new MenuItem ("_Quit", "", () => Application.RequestStop(), null, null, Key.Q | Key.CtrlMask),
+                    new MenuItem ("_Quit", "", () => Helpers.Quit(), null, null, Key.Q | Key.CtrlMask),
                     new MenuItem("_lineNumber", "", () => CurrLine(), null, null, Key.L | Key.CtrlMask)
                 }),
             });
@@ -25,15 +26,12 @@ namespace win32editor
             Application.Init();
             CaptureArgs(args);
 
-            //Create Mouse-Accessed menubar to save, open, load, files.
-
             textField.ColorScheme = Colors.Dialog;
             menu.ColorScheme = Colors.Dialog;
             wind.Add(textField);
             wind.Add(menu);
             Application.Top.Add(wind);
             Application.Run();
-
         }
 
         public static void CaptureArgs(string[] args)
@@ -45,10 +43,6 @@ namespace win32editor
                     fileName = args[0];
                     Helpers.LoadFile();
                 }
-                else
-                {
-                    fileName = "Untitled";
-                }
             }
         }
 
@@ -58,5 +52,5 @@ namespace win32editor
             wind.Add(d);
         }
 
-    }
+    }  
 }

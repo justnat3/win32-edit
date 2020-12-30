@@ -1,10 +1,15 @@
-there are some issues.
+aasdf
 
-this is a file that I can edit text in.
-         this can be some weird behavior
+
+
+does this wotk asd
+######3I can edit this file and save it. 
+this
+fixed        this can be some weird behavior
   ??? 222!!! some chars 
 std::cout << "some text";
 
+this works.
 
 int
 main()

@@ -7,3 +7,4 @@ C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\bin\Debug\Terminal.Gu
 C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Debug\win32editor.csproj.CopyComplete
 C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Debug\win32editor.exe
 C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Debug\win32editor.pdb
+C:\Users\Nathan Reed\RiderProjects\win32editor\win32editor\obj\Debug\win32editor.csprojAssemblyReference.cache
