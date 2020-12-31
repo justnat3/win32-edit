@@ -1,4 +1,7 @@
+using System;
 using System.IO;
+using System.Net.NetworkInformation;
+using NStack;
 using Terminal.Gui;
 
 namespace win32editor
@@ -7,20 +10,21 @@ namespace win32editor
     {
         public static bool fileLoaded { get; set; } = false;
         public static string fileName { get; set; }
-       
         public static bool _saved { get; set; } = true;  // assume the file is saved and check back later to see if the file has been updated. 
 
-        public static Window wind = new Window("Untitled") { X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill() };
-        public static TextView textField = new TextView { X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill() };
-        public static MenuBar menu = new MenuBar(new[] {
+        public static readonly Window wind = new Window("Untitled") { X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill() };
+        public static readonly TextView textField = new TextView { X = 0, Y = 1, Width = Dim.Fill(), Height = Dim.Fill() };
+        private static readonly MenuBar menu = new MenuBar(new[] {
                 new MenuBarItem ("_File", new[] {
-                    new MenuItem ("_Open", "", () => { Helpers.Open(); }, null, null, Key.O | Key.CtrlMask),
-                    new MenuItem ("_Save", "", () => Helpers.Save(), null, null, Key.S | Key.CtrlMask),
+                    new MenuItem ("_Open", "", Helpers.Open, null, null, Key.O | Key.CtrlMask),
+                    new MenuItem ("_Save", "", Helpers.Save, null, null, Key.S | Key.CtrlMask),
                     null,
-                    new MenuItem ("_Quit", "", () => Helpers.Quit(), null, null, Key.Q | Key.CtrlMask),
-                    new MenuItem("_lineNumber", "", () => CurrLine(), null, null, Key.L | Key.CtrlMask)
+                    new MenuItem ("_Quit", "", Helpers.Quit, null, null, Key.Q | Key.CtrlMask),
+                    new MenuItem("_lineNumber", "", Helpers.DisplayCursorPos, null, null, Key.P | Key.AltMask)
                 }),
             });
+
+        
         public static void Main(string[] args)
         {
             Application.Init();
@@ -34,23 +38,26 @@ namespace win32editor
             Application.Run();
         }
 
-        public static void CaptureArgs(string[] args)
+        private static void CaptureArgs(string[] args)
         {
-            if (args.Length > 0)
+            switch (args.Length > 0)
             {
-                if (File.Exists(args[0]))
-                {
+                case true when File.Exists(args[0]):
                     fileName = args[0];
                     Helpers.LoadFile();
-                }
+                    break;
+                case true:
+                    try
+                    {
+                        File.Create(fileName);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Could not create file");
+                    }
+
+                    break;
             }
         }
-
-        private static void CurrLine()
-        {
-            var d = new Label(textField.CurrentRow.ToString()) { X = 0, Y = 0, Width = Dim.Percent(100), Height = Dim.Percent(10) };
-            wind.Add(d);
-        }
-
     }  
 }
